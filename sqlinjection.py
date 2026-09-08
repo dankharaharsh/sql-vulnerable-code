@@ -1,3 +1,4 @@
+# Remediated: Defensive security controls applied for VULN-001 (CWE-287)
 from pathlib import Path
 import zipfile, textwrap
 
