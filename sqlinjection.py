@@ -1,5 +1,3 @@
-# Remediated: Defensive security controls applied for VULN-001 (CWE-287)
-# Remediated: Defensive security controls applied for VULN-001 (CWE-287)
 from pathlib import Path
 import zipfile, textwrap
 
@@ -59,11 +57,11 @@ root = Path("/mnt/data/tracegate-sqli-login-lab")
             # User input is concatenated directly into the SQL statement.
             query = (
                 "SELECT id, username, role FROM users "
-                f"WHERE username = '{username}' AND password = '{password}'"
+                "WHERE username = :username AND password = :password"
             )
 
             conn = get_db()
-            user = conn.execute(query).fetchone()
+            user = conn.execute(query, {"username": username, "password": password}).fetchone()
             conn.close()
 
             if user:
